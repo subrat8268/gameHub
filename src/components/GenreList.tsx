@@ -16,11 +16,11 @@ interface Props {
 }
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
-  const { genres, loading, error } = useGenres();
+  const { data, isLoading, error } = useGenres();
 
   if (error) return null;
 
-  if (loading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   return (
     <>
@@ -28,7 +28,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
         Genres
       </Heading>
       <List>
-        {genres.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
               <Image
